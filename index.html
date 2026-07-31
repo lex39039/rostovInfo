@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Официальный информационный портал города Ростова-на-Дону</title>
+    <style>
+        /* Общие официальные стили по ГОСТ */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f4f6f9;
+            color: #333;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* 1. Верхняя гос-панель */
+        .gov-panel {
+            background-color: #0d2c54;
+            color: #fff;
+            padding: 8px 20px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #ae9461;
+        }
+
+        /* 2. Шапка сайта */
+        .main-header {
+            background-color: #ffffff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-placeholder {
+            width: 60px;
+            height: 70px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            font-size: 10px;
+            border: 1px dashed #333;
+            flex-shrink: 0;
+        }
+        .status-badge {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* 3. КРУТОЙ АВТОМАТИЧЕСКИЙ СЛАЙДЕР (HERO-SECTION) */
+        .slider-container {
+            position: relative;
+            height: 450px; 
+            overflow: hidden; /* Прячем все, что выходит за рамки */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Внутренний блок со всеми слайдами */
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Одиночный слайд */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: contain; /* Картинка теперь будет помещаться ПОЛНОСТЬЮ без жесткого обрезания */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #000; /* Черный фон по бокам, если фото слишком узкое */
+            opacity: 0;
+            animation: slideAnimation 12s infinite; /* Общий цикл анимации 12 секунд на 3 фото */
+        }
+
+        /* Пути к вашим трем картинкам */
+        .slide:nth-child(1) { background-image: url('rostov1.png'); animation-delay: 0s; }
+        .slide:nth-child(2) { background-image: url('rostov2.png'); animation-delay: 4s; }
+        .slide:nth-child(3) { background-image: url('rostov3.png'); animation-delay: 8s; }
+
+        /* Логика плавной смены фотографий */
+        @keyframes slideAnimation {
+            0% { opacity: 0; }
+            5% { opacity: 1; }
+            33% { opacity: 1; }
+            38% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* Затемняющий слой поверх слайдов, чтобы текст читался идеально */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Затемнение 50% */
+            z-index: 1;
+        }
+
+        /* Контент (Текст) поверх слайдера */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #ffffff;
+            padding: 15px;
+            max-width: 800px;
+        }
+        .hero-content h1 {
+            font-size: 38px;
+            margin: 0 0 15px 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,1);
+            line-height: 1.2;
+        }
+        .hero-content p {
+            font-size: 18px;
+            margin: 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,1);
+            line-height: 1.4;
+        }
+
+        /* 4. Основной блок (Каталог ссылок) */
+        .content-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+        .section-title {
+            text-align: center;
+            border-bottom: 2px solid #0d2c54;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+        .links-grid-placeholder {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        .card-stub {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            color: #777;
+            border-radius: 4px;
+        }
+
+        /* 5. Подвал */
+        footer {
+            background-color: #111;
+            color: #bbb;
+            padding: 25px 15px;
+            margin-top: 40px;
+            font-size: 14px;
+            border-top: 3px solid #ae9461;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* АДАПТАЦИЯ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА */
+        @media (max-width: 768px) {
+            .gov-panel {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+                padding: 6px 10px;
+            }
+            .main-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 15px;
+            }
+            .header-left {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .slider-container {
+                height: 300px; /* Оптимальная высота под телефон */
+            }
+            .hero-content h1 {
+                font-size: 24px;
+            }
+            .hero-content p {
+                font-size: 14px;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. ВЕРХНЯЯ ГОС-ПАНЕЛЬ -->
+    <div class="gov-panel">
+        <div>Государственный информационный ресурс • Официальный сайт</div>
+        <div>Версия для слабовидящих (ГОСТ Р 52872-2012)</div>
+    </div>
+
+    <!-- 2. ШАПКА САЙТА -->
+    <header class="main-header">
+        <div class="header-left">
+            <div class="logo-placeholder">Герб Ростова (ГОСТ)</div>
+            <div>
+                <div style="font-size: 18px; font-weight: bold; color: #0d2c54;">ИНФОРМАЦИОННЫЙ ПОРТАЛ</div>
+                <div style="font-size: 13px; color: #666;">Городской округ город Ростов-на-Дону</div>
+            </div>
+        </div>
+        <div class="status-badge">✓ ПРОВЕРЕНО ИСПОЛНИТЕЛЯМИ</div>
+    </header>
+
+    <!-- 3. ГЛАВНЫЙ БАННЕР С АВТО-СЛАЙДЕРОМ -->
+    <section class="slider-container">
+        <div class="slider">
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Ростов-на-Дону — Южная столица России</h1>
+            <p>Официальная справочная система, проверенные исполнители и городские веб-ресурсы</p>
+        </div>
+    </section>
+
+    <!-- 4. ОСНОВНОЙ БЛОК (КАТАЛОГ ССЫЛОК) -->
+    <main class="content-container">
+        <h2 class="section-title">Городские веб-ресурсы и организации</h2>
+        
+        <div class="links-grid-placeholder">
+            <div class="card-stub">Здесь будет ссылка 1</div>
+            <div class="card-stub">Здесь будет ссылка 2</div>
+            <div class="card-stub">Здесь будет ссылка 3</div>
+            <div class="card-stub">Здесь будет ссылка 4</div>
+        </div>
+    </main>
+
+    <!-- 5. ПОДВАЛ -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <p><b>Информация об исполнителях проекта:</b></p>
+                <p>Официальный реестр проверенных веб-ресурсов г. Ростова-на-Дону.</p>
+            </div>
+            <div>
+                <p><b>Правовая информация:</b></p>
+                <p>Данные актуальны на 2026 год. Все права защищены согласно ГОСТ.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
