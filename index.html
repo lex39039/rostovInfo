@@ -230,21 +230,28 @@
         <div>Версия для слабовидящих (ГОСТ Р 52872-2012)</div>
     </div>
 
-    <!-- 2. ШАПКА САЙТА -->
-    <header class="main-header">
-        <div class="header-left">
-            <div class="logo-placeholder">Герб Ростова (ГОСТ)</div>
-            <div>
-                <div style="font-size: 18px; font-weight: bold; color: #0d2c54;">ИНФОРМАЦИОННЫЙ ПОРТАЛ</div>
-                <div style="font-size: 13px; color: #666;">Городской округ город Ростов-на-Дону</div>
+          <!-- 2. ШАПКА САЙТА -->
+    <header class="main-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 30px; background-color: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <div class="header-left" style="display: flex; align-items: center; gap: 20px;">
+            <div class="logo-placeholder" style="display: flex; align-items: center; justify-content: center;">
+                <!-- Герб с фиксированной высотой и ровным отображением -->
+                <img src="img/gerb.png" alt="Герб Ростова" style="height: 55px; width: auto; display: block; object-fit: contain;">
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <!-- Название компании и подзаголовок -->
+                <div style="font-size: 22px; font-weight: bold; color: #0d2c54; line-height: 1.2; letter-spacing: 0.5px;">КРОВЛЯ ЛЕГЕНДА ДОНА</div>
+                <div style="font-size: 13px; color: #666; line-height: 1.3; margin-top: 4px;">Строительная компания | Ростов-на-Дону</div>
             </div>
         </div>
-        <div class="status-badge">✓ ПРОВЕРЕНО ИСПОЛНИТЕЛЯМИ</div>
+        <!-- Зеленая плашка справа тоже встанет ровно по центру высоты -->
+        <div class="status-badge" style="margin: 0;">✓ ПРОВЕРЕНО ИСПОЛНИТЕЛЯМИ</div>
     </header>
+
 
     <!-- 3. ГЛАВНЫЙ БАННЕР С АВТО-СЛАЙДЕРОМ -->
     <section class="slider-container">
         <div class="slider">
+            <!-- Ваши три слайда, которые берут фотки rostov1, rostov2, rostov3 из корня -->
             <div class="slide"></div>
             <div class="slide"></div>
             <div class="slide"></div>
@@ -255,6 +262,7 @@
             <p>Официальная справочная система, проверенные исполнители и городские веб-ресурсы</p>
         </div>
     </section>
+
 
     <!-- 4. ОСНОВНОЙ БЛОК (КАТАЛОГ ССЫЛОК) -->
     <main class="content-container">
